@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.mohamedabdelaziz.baking">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|keyboard">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".mywidgetservice"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver android:name=".NewAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/new_app_widget_info" />
+        </receiver>
+
+        <activity
+            android:name=".stepsListActivity"
+            android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|keyboard"
+            android:label="@string/title_steps_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".stepsDetailActivity"
+            android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|keyboard"
+            android:label="@string/title_steps_detail"
+            android:parentActivityName=".stepsListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mohamedabdelaziz.baking.stepsListActivity" />
+        </activity>
+
+        <receiver android:name=".stepsDetailFragment$myreciever">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".IngredentActivity"
+            android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|keyboard"
+            android:label="@string/title_activity_ingredent"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+
+</manifest>
